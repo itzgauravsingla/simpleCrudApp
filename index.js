@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+require('dotenv').config(); // module to use .env for environment variables
 // const Product = require('./models/product.model.js');
 const productRoute = require('./routes/product.route');
 const app = express();
@@ -103,7 +104,7 @@ app.get('/', function(req, res) {
 
 (async function () {
   try {
-    await mongoose.connect('mongodb+srv://gauravmsbdocs:gauravsingla@cluster0.0ueg5ny.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+    await mongoose.connect(process.env.MONGO_DB);
     console.log('Connected with MongoDB');
     app.listen(3000, () => {
       console.log('Server is listening on port 3000');
